@@ -126,7 +126,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Default: Stores in DB
-SESSION_COOKIE_SECURE = False  # Only for local development
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-SESSION_COOKIE_NAME = "sessionid"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # ✅ Store sessions in DB
+SESSION_COOKIE_NAME = "sessionid"  # ✅ Ensure sessionid stays consistent
+SESSION_COOKIE_SECURE = False  # ✅ Only for local development
+SESSION_COOKIE_HTTPONLY = False  # ✅ Allow curl to access session
+SESSION_COOKIE_SAMESITE = None  # ✅ Fixes session inconsistencies
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # ✅ Keep session after browser closes
+SESSION_SAVE_EVERY_REQUEST = True  # ✅ Force Django to save session every request
